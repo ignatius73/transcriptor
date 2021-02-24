@@ -1,0 +1,24 @@
+<div class="container">
+    <form action="/upload" autocomplete="off" (ngSubmit)="imprime( Formu )" #Formu="ngForm" enctype="multipart/form-data">
+        <label for="formFile" class="form-label">Default file input example</label>
+        <input class="form-control" type="file" id="formFile" name="archivo" accept=".wav,.mp3,.m4a,.ogg" #archivoUploader (change)="onFileChange($event)" required>
+        <hr>
+        <button type="button" class="btn btn-primary btn-block boton" (click)="onUpload()">Subir</button>
+        <button type="button" class="btn btn-primary btn-block" (click)="limpiar( Formu )">Limpiar</button>
+
+
+        <hr>
+
+        <label for="exampleFormControlTextarea1" class="form-label">Transcripción de tu audio</label>
+        <div *ngIf="!loading">
+            <textarea [(ngModel)]="resultado.message" name="resultado" class="form-control" id="exampleFormControlTextarea1" rows="3">
+                          </textarea>
+        </div>
+        <div *ngIf="loading">
+            <br>
+            <span class="sr-only">Estamos transcribiendo tu audio, espera por favor...</span>
+            <span class="spinner-grow" style="width: 2rem; height: 3rem;" role="status"></span>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,17 @@
+<app-formulario-usuario *ngIf="!Usuario.existe"></app-formulario-usuario>
+<div *ngIf="Usuario.existe" class="container">
+    <div class="row">
+        <div class="col-sm">
+            <app-formulario-usuario></app-formulario-usuario>
+        </div>
+
+        <div class="col-sm">
+            <p>{{ Usuario.Logged.email }}</p>
+            <img class="foto center" [src]="Usuario.Logged.img" />
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+
+    </div>
+</div>

@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    margin-top: 5px;
+    margin-bottom: auto;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.boton {
+    margin: 0.2rem;
+}

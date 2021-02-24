@@ -1,0 +1,15 @@
+.contenedor {
+    padding: 4em 2em;
+    display: flex;
+    border: solid black thick;
+}
+
+.cabecera1 {
+    text-align: center;
+    height: 100vh;
+    width: 45vw;
+}
+
+.cabecera1 img {
+    height: 100vh;
+}

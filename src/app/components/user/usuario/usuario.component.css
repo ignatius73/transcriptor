@@ -1,0 +1,16 @@
+div.form-group row {
+    margin: 15px;
+}
+
+.foto {
+    border-radius: 50%;
+    height: 50vh;
+    width: 50vh;
+    text-align: center;
+    object-fit: cover;
+}
+
+.row {
+    column-count: 2;
+    column-rule: thick rgba(rgb(204, 145, 145), rgb(34, 216, 34), rgb(214, 214, 236), alpha);
+}
