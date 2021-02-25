@@ -43,5 +43,7 @@ img:string;
      const param: string = this.Logged.email;
      return this.http.get(`${ environment.apiUrl }/api/usuario?email=${ this.Logged.email}`)         
          };
+    
+   
    
 }

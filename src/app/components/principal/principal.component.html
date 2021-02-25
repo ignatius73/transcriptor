@@ -3,6 +3,9 @@
         <label for="formFile" class="form-label">Default file input example</label>
         <input class="form-control" type="file" id="formFile" name="archivo" accept=".wav,.mp3,.m4a,.ogg" #archivoUploader (change)="onFileChange($event)" required>
         <hr>
+        <label for="formVoices" class="form-label">¿Cuántas personas se escuchan en el audio?</label>
+        <input class="form-control" id="formVoices" type="text" name="voces" [(ngModel)]="voces">
+        <hr>
         <button type="button" class="btn btn-primary btn-block boton" (click)="onUpload()">Subir</button>
         <button type="button" class="btn btn-primary btn-block" (click)="limpiar( Formu )">Limpiar</button>
 
