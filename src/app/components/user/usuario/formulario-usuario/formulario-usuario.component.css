@@ -2,3 +2,17 @@
     border-radius: 50%;
     height: 30vh
 }
+
+.tabla {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contenedor img {
+    width: 128px;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+}

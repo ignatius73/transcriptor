@@ -1,58 +1,59 @@
-<h4>Formularios <small>data</small></h4>
-<hr>
-<form [formGroup]="forma" (ngSubmit)="enviar()">
+<div class="contenedor">
+    <h4>Formularios <small>data</small></h4>
+    <hr>
+    <form [formGroup]="forma" (ngSubmit)="enviar()">
 
-    <div>
-        <div class="form-group row">
+        <div>
+            <!--<div class="form-group row">-->
             <label class="col-2 col-form-label" name="Nombre">Nombre</label>
-            <div class="col-8">
-                <input formControlName="nombre" name="nombre" class="form-control" type="text" placeholder="Nombre" value="usuarios.usuario.nombre">
+            <!--<div class="col-8">-->
+            <input formControlName="nombre" name="nombre" class="form-control" type="text" placeholder="Nombre" value="usuarios.usuario.nombre">
 
-            </div>
+            <!--</div>-->
 
-        </div>
-        <br>
-        <div class="form-group row">
+            <!--</div>-->
+            <br>
+            <!--<div class="form-group row">-->
             <label class="col-2 col-form-label" name="Edad">Edad</label>
-            <div class="col-8">
+            <!--<div class="col-8">-->
 
-                <input name="edad" class="form-control" type="text" placeholder="Edad">
-            </div>
+            <input name="edad" class="form-control" type="text" placeholder="Edad">
+            <!--</div>-->
 
-        </div>
-        <br>
-        <div class="form-group row">
+            <!--</div>-->
+            <br>
+            <!--<div class="form-group row">-->
             <label class="col-2 col-form-label" name="Nombre">Dirección</label>
-            <div class="col-8">
-                <input name="nombre" formControlName='direccion' class="form-control" type="text" placeholder="Dirección">
-            </div>
-        </div>
-        <br>
-        <div class="form-group row">
+            <!--<div class="col-8">-->
+            <input name="nombre" formControlName='direccion' class="form-control" type="text" placeholder="Dirección">
+            <!--</div>-->
+            <!--</div>-->
+            <br>
+            <!--<div class="form-group row">-->
             <label class="col-2 col-form-label" name="Nombre">Email</label>
-            <div class="col-8">
+            <!--<div class="col-8">-->
 
-                <input name="edad" formControlName="email" class="form-control" type="text" placeholder="Email">
-            </div>
-        </div>
-        <br>
-        <div class="form-group row">
+            <input name="edad" formControlName="email" class="form-control" type="text" placeholder="Email">
+            <!--</div>-->
+            <!--</div>-->
+            <br>
+            <!--<div class="form-group row">-->
             <label class="col-2 col-form-label" name="foto">Foto</label>
-            <div class="col-8">
+            <!--<div class="col-8">-->
 
-                <input name="img" formControlName="img" accept=".png,.jpg,.jpeg" class="form-control" type="file" (change)="selectImage($event)" placeholder="Foto">
-            </div>
+            <input name="img" formControlName="img" accept=".png,.jpg,.jpeg" class="form-control" type="file" (change)="selectImage($event)" placeholder="Foto">
+            <!--</div>-->
             <div *ngIf="imgPreview != null">
                 <img [src]="imgPreview">
             </div>
         </div>
         <br>
-        <div class="form-group row">
-            <label class="col-2 col-form-label" name="Nombre">Plan</label>
-            <div class="col-8">
-                <input name="plan" formControlName='plan' class="form-control" type="text" placeholder="plan">
-            </div>
-        </div>
+        <!--<div class="form-group row">-->
+        <label class="col-2 col-form-label" name="Nombre">Plan</label>
+        <!--<div class="col-8">-->
+        <input name="plan" formControlName='plan' class="form-control" type="text" placeholder="plan">
+        <!--</div>-->
+        <!--</div>-->
         <br>
         <br>
 
@@ -60,21 +61,53 @@
         <button type="submit" class="btn btn-outline-primary">
         Guardar
       </button>
-    </div>
-</form>
+        <!-- </div>-->
+    </form>
 
+
+</div>
+
+
+<div *ngIf="transcrip" class="contenedor">
+    <table>
+        <tr>
+            <th>Texto</th>
+            <th>Fecha</th>
+            <th>Descarga</th>
+
+        </tr>
+        <tr *ngFor="let t of transcrip">
+            <td>{{ t.texto }}</td>
+            <td>{{ t.fecha | date:'short' }}</td>
+            <td>
+                <button type="button"><img src="../../../../../assets/download.png"></button>
+            </td>
+            <td>
+                <button type="button"><img src="../../../../../assets/word-ico.png"></button>
+            </td>
+            <td>
+                <button type="button"><img src="../../../../../assets/excel-ico.png"></button>
+            </td>
+
+        </tr>
+    </table>
+
+</div>
+
+
+<!--
 <pre>
-Estado del Formulario: {{ forma.valid }}
+    Estado del Formulario: {{ forma.valid }}
+        <hr>
+    Estado fue tocado:  {{ forma.touched }}
     <hr>
-Estado fue tocado:  {{ forma.touched }}
-<hr>
-Estado del status: {{ forma.status }}
-</pre>
-
-<pre>
-{{ forma.value | json }}
-</pre>
-
-<pre>
-    {{ usuario | json }}
+    Estado del status: {{ forma.status }}
     </pre>
+
+<pre>
+    {{ forma.value | json }}
+    </pre>
+
+<pre>
+        {{ usuario | json }}
+        </pre>-->

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Logged } from 'src/interfaces/logged';
 import { User } from 'src/interfaces/user';
 import { UsuariosService } from 'src/services/usuarios.service';
+import { TranscripcionService } from '../../../../../services/transcripcion.service';
+import { Transcripcion } from '../../../../../interfaces/transcripcion';
 
 @Component({
   selector: 'app-formulario-usuario',
@@ -17,8 +19,9 @@ export class FormularioUsuarioComponent implements OnInit {
   imgPreview: string | ArrayBuffer;
   @Output()
   propagar= new EventEmitter<FormGroup>();
+  transcrip: Transcripcion[];
    
-  constructor(private fb:FormBuilder, public usuarios:UsuariosService) {
+  constructor(private fb:FormBuilder, public usuarios:UsuariosService, public transcripciones: TranscripcionService) {
     
     
    }
@@ -27,6 +30,12 @@ export class FormularioUsuarioComponent implements OnInit {
     this.usuario = this.usuarios.usuario[0];
     this.creaFormulario();
     this.resetFormulario();
+    this.transcripciones.getTranscripciones( this.usuario._id).subscribe( ( resp )=>{
+        if (resp['trans']){
+          
+          this.transcrip = resp['trans']; 
+    } 
+    });
   }
 
   creaFormulario(){
@@ -34,7 +43,7 @@ export class FormularioUsuarioComponent implements OnInit {
       "nombre"   : ['', Validators.required],
       "edad"     : ['', Validators.pattern('###')],
       "direccion":[''],
-      "email"    :['', Validators.required, Validators.email],
+      "email"    :['', [Validators.required, Validators.email]],
       "img"      : [''],
       "estado"   : [''],
       "google"   : [''],

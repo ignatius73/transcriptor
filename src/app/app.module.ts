@@ -14,6 +14,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { cred } from 'src/credentials';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranscripcionService } from '../services/transcripcion.service';
 
 
 
@@ -38,7 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     }),
     ReactiveFormsModule
   ],
-  providers: [AudiosService,UsuariosService],
+  providers: [AudiosService,UsuariosService,TranscripcionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

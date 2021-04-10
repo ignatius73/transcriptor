@@ -5,6 +5,8 @@ import { Resultado } from 'src/interfaces/resultado';
 import { AudiosService } from 'src/services/audios.service';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { User } from 'src/interfaces/user';
+import { TranscripcionService } from '../../../services/transcripcion.service';
+import { Transcripcion } from 'src/interfaces/transcripcion';
 
 @Component({
   selector: 'app-principal',
@@ -20,10 +22,11 @@ export class PrincipalComponent {
   message: ''};
   @ViewChild ('archivoUploader') archivoUploader:ElementRef;
   loading = false;
+  transcripto: Transcripcion = {};
   
 
 
-  constructor( private audiosService: AudiosService, private usuario:UsuariosService){}
+  constructor( private audiosService: AudiosService, private usuario:UsuariosService, private transcripcion:TranscripcionService){}
    
 
 
@@ -50,7 +53,18 @@ onUpload(){
        this.loading=false;
        this.resultado.ok =  res.ok;
        this.resultado.message = res.message;
-        console.log(this.usuario.usuario[0]._id);
+       this.transcripto.texto = this.resultado.message;
+       this.transcripto.idUsuario = this.usuario.usuario[0]._id;
+
+
+       this.transcripcion.guardarTranscripcion(this.transcripto).subscribe( (res:any) =>{
+         if( res ){
+           console.log(res);
+         }
+       }
+
+       );
+        
 
     }
   });

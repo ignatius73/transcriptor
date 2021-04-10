@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Logged } from 'src/interfaces/logged';
 import { User } from 'src/interfaces/user';
 import { UsuariosService } from 'src/services/usuarios.service';
+import { TranscripcionService } from 'src/services/transcripcion.service';
+import { Transcripcion } from '../../../../interfaces/transcripcion';
 
 
 
@@ -23,12 +25,14 @@ usuario: User;
 imgPreview: string | ArrayBuffer;
 existe:boolean;
 img: SafeResourceUrl;
+transcripciones:Transcripcion[];
   
  
 
   
-  constructor( private ruta: Router, public Usuario: UsuariosService, private _sanitizer: DomSanitizer,  ) {
+  constructor( private ruta: Router, public Usuario: UsuariosService, private _sanitizer: DomSanitizer, private transcrip: TranscripcionService ) {
     console.log(Usuario.Logged);
+    
 
     
      
@@ -36,11 +40,13 @@ img: SafeResourceUrl;
   }
 
   ngOnInit(): void {
-    console.log(this.Usuario.usuario);
-    
+    console.log(`Usuario recibido en Usuario.Component ${this.Usuario.usuario._id}`);
+    //console.log(`Usuario recibido en Usuario.Component ${JSON.stringify(this.Usuario.usuario)}`);
+    //console.log(`Usuario recibido en Usuario.Component ${this.Usuario.usuario[0]._id}`);
+
+   // this.transcrip.getTranscripciones(this.Usuario.usuario)
     
 
-    
    
    /* this.Usuario.consultaUsuario$().subscribe( ( resp ) =>{
             
