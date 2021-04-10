@@ -37,7 +37,7 @@
             </div>
             <ng-container *ngIf="auth0.isAuthenticated$ | async; else loggedOut">
 
-                <button class="btn btn-primary boton" (click)="auth0.logout({ returnTo: 'http://localhost:4200' })">
+                <button class="btn btn-primary boton" (click)="auth0.logout({ returnTo: 'environment.returnTo' })">
                 Salir
               </button>
             </ng-container>
