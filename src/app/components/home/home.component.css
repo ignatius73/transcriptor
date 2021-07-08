@@ -1,15 +1,13 @@
 .contenedor {
     padding: 4em 2em;
     display: flex;
-    border: solid black thick;
+    border: 1px solid black;
+    background-color: antiquewhite;
 }
 
-.cabecera1 {
-    text-align: center;
-    height: 100vh;
-    width: 45vw;
-}
-
-.cabecera1 img {
+.contenedor img {
+    width: 100%;
+    object-fit: contain;
+    object-position: top;
     height: 100vh;
 }

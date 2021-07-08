@@ -43,6 +43,12 @@ img:string;
      const param: string = this.Logged.email;
      return this.http.get(`${ environment.apiUrl }/api/usuario?email=${ this.Logged.email}`)         
          };
+
+    nuevoUsuario( usuario:User):Observable<any>{
+      this.usuario = usuario;
+      console.log( this.usuario);
+      return this.http.post(`${ environment.apiUrl }/api/nuevoUsuario`, this.usuario);
+    }
     
    
    

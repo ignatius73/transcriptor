@@ -15,8 +15,9 @@ import { cred } from 'src/credentials';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranscripcionService } from '../services/transcripcion.service';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-
+const config : SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TranscripcionService } from '../services/transcripcion.service';
     HttpClientModule,
     FormsModule,
     UserModule,
+    SocketIoModule.forRoot(config),
     AuthModule.forRoot({
       domain: cred.domain,
       clientId: cred.clientId

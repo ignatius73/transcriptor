@@ -13,20 +13,24 @@ import { Transcripcion } from '../../../../../interfaces/transcripcion';
  
 })
 export class FormularioUsuarioComponent implements OnInit {
-  Logged:Logged;
+  logged:Logged;
   forma: FormGroup;
-  usuario: User;
+  usuario: User = {};
   imgPreview: string | ArrayBuffer;
   @Output()
   propagar= new EventEmitter<FormGroup>();
   transcrip: Transcripcion[];
+  errores:any = '';
+
    
   constructor(private fb:FormBuilder, public usuarios:UsuariosService, public transcripciones: TranscripcionService) {
-    
+    console.log(usuarios.Logged);
     
    }
 
   ngOnInit(): void {
+    console.log(`Usuario ${ this.usuarios.usuario }`);
+    if ( this.usuarios.usuario ){
     this.usuario = this.usuarios.usuario[0];
     this.creaFormulario();
     this.resetFormulario();
@@ -36,6 +40,20 @@ export class FormularioUsuarioComponent implements OnInit {
           this.transcrip = resp['trans']; 
     } 
     });
+  }else{
+    this.logged = this.usuarios.Logged;
+    this.usuario.email = this.logged.email;
+    this.usuario.nombre = this.logged.given_name;
+    this.usuario.img = this.logged.img;
+
+    this.creaFormulario();
+    this.forma.controls['email'].setValue(this.logged.email);
+    this.forma.controls['email'].markAsTouched();
+    this.forma.controls['nombre'].setValue(this.logged.given_name);
+    this.forma.controls['nombre'].markAsTouched();
+   
+  }
+  
   }
 
   creaFormulario(){
@@ -45,8 +63,6 @@ export class FormularioUsuarioComponent implements OnInit {
       "direccion":[''],
       "email"    :['', [Validators.required, Validators.email]],
       "img"      : [''],
-      "estado"   : [''],
-      "google"   : [''],
       "plan"     : ['']
     })
 
@@ -68,10 +84,12 @@ export class FormularioUsuarioComponent implements OnInit {
   }
 
   enviar(){
+    console.log(this.forma);
     this.propagar.emit(this.forma);
     console.log(this.forma );
-    this.forma.reset();
-    this.imgPreview = null;
+    /*this.forma.reset();
+    this.imgPreview = null;*/
+    
     
 
   }

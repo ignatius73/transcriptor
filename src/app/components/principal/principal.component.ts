@@ -8,6 +8,10 @@ import { User } from 'src/interfaces/user';
 import { TranscripcionService } from '../../../services/transcripcion.service';
 import { Transcripcion } from 'src/interfaces/transcripcion';
 
+import { environment } from '../../../environments/environment';
+
+
+
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
@@ -24,9 +28,12 @@ export class PrincipalComponent {
   loading = false;
   transcripto: Transcripcion = {};
   
+  
 
 
-  constructor( private audiosService: AudiosService, private usuario:UsuariosService, private transcripcion:TranscripcionService){}
+  constructor( private audiosService: AudiosService, private usuario:UsuariosService, private transcripcion:TranscripcionService){
+    
+  }
    
 
 
@@ -47,35 +54,54 @@ onUpload(){
    const nuevoArchivo = new FileItem(this.archivos[propiedad]);
    formData.append('archivo',nuevoArchivo.archivo, nuevoArchivo.nombre);
    formData.append('voces', this.voces);
+  /* setTimeout(() => {
+    
+    this.resultado.message = "Parece que la transcripción está tardando bastante. Cuando finalice la verás aquí reflejada";
+}, 10000);*/
    this.audiosService.enviaArchivo(formData).subscribe( (res:any) => {
 
       if ( res ){
-       this.loading=false;
+      
        this.resultado.ok =  res.ok;
-       this.resultado.message = res.message;
-       this.transcripto.texto = this.resultado.message;
-       this.transcripto.idUsuario = this.usuario.usuario[0]._id;
+       //this.resultado.message = res.message;
+       this.resultado.extension = res.extension;
+       this.resultado.filename = res.filename;
+       this.resultado.voces = this.voces;
+       this.resultado.ruta = res.ruta;
+      
+      
+       console.log(res);
+      
+       this.audiosService.procesaArchivo(this.resultado).subscribe( (resp:any) =>{
+         console.log(resp);
+         
+         if (resp){
+          this.loading = false; 
+          this.transcripto.texto = resp.message;
+          console.log(this.usuario.usuario);
+          this.transcripto.idUsuario = this.usuario.usuario[0]._id;
+          this.resultado.message = resp.message;
+          console.log(this.transcripto);
+          this.transcripcion.guardarTranscripcion(this.transcripto).subscribe( (res:any) =>{
+            if( res ){
+              console.log(res);
+            }
+          });
+         
+        }
 
+       
 
-       this.transcripcion.guardarTranscripcion(this.transcripto).subscribe( (res:any) =>{
-         if( res ){
-           console.log(res);
-         }
-       }
-
-       );
+      });
         
-
-    }
-  });
-
-
   }
 
+   });
 
 
 
 
+}
 
 }
 

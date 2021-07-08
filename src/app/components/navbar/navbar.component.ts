@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { User } from '../../../interfaces/user';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment'
+
 
 
 
@@ -19,14 +19,20 @@ export class NavbarComponent implements OnInit {
   img : any = '';
   user: User;
   existe:boolean;
+  url: string;
+
  
 
 
   constructor( public auth0: AuthService, 
                private _sanitizer: DomSanitizer, 
                private usuario:UsuariosService, 
-               private route:Router) { 
-                this.auth0.user$.subscribe( (user )=>{
+               private route:Router,
+               
+               ) { 
+                  this.url = window.location.href;
+                  console.log( this.url );
+                  this.auth0.user$.subscribe( (user )=>{
                   if ( user ){
                     usuario.Logged.email = user.email;
                     usuario.Logged.given_name = user.given_name;
@@ -37,13 +43,17 @@ export class NavbarComponent implements OnInit {
                     this.img = this._sanitizer.bypassSecurityTrustResourceUrl(user.picture);
                     
                     usuario.consultaUsuario$().subscribe( ( resp ) =>{
-            
+                      
                       if(resp['user']){
                         console.log(resp['user']);
                         usuario.usuario = resp['user'];
                         usuario.existe = true;
+                        this.route.navigate(['/user']);
+                      }else{
+                        usuario.existe = false;
+                        this.route.navigate(['/user/nuevoUsuario']);
                       }
-                      this.route.navigate(['/user']);
+                      
                     });
                     
                   }

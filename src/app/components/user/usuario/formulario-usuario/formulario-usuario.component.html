@@ -7,7 +7,8 @@
             <!--<div class="form-group row">-->
             <label class="col-2 col-form-label" name="Nombre">Nombre</label>
             <!--<div class="col-8">-->
-            <input formControlName="nombre" name="nombre" class="form-control" type="text" placeholder="Nombre" value="usuarios.usuario.nombre">
+            <input formControlName="nombre" name="nombre" class="form-control" type="text" placeholder="Nombre" [value]="usuario.nombre">
+
 
             <!--</div>-->
 
@@ -33,7 +34,7 @@
             <label class="col-2 col-form-label" name="Nombre">Email</label>
             <!--<div class="col-8">-->
 
-            <input name="edad" formControlName="email" class="form-control" type="text" placeholder="Email">
+            <input name="edad" formControlName="email" class="form-control" type="text" placeholder="Email" [value]="usuario.email">
             <!--</div>-->
             <!--</div>-->
             <br>
@@ -51,16 +52,32 @@
         <!--<div class="form-group row">-->
         <label class="col-2 col-form-label" name="Nombre">Plan</label>
         <!--<div class="col-8">-->
-        <input name="plan" formControlName='plan' class="form-control" type="text" placeholder="plan">
+        <select class="form-select form-select-lg mb-3" name="plan" formControlName="plan" aria-label=".form-select-lg example" place>
+         
+                <option selected value="Free">Free</option>
+                <option value="Cobre">Cobre</option>
+                <option value="Bronce">Bronce</option>
+                <option value="Oro">Oro</option>
+              </select>
+        <!--<input name="plan" formControlName='plan' class="form-control" type="text" placeholder="plan">-->
         <!--</div>-->
         <!--</div>-->
         <br>
         <br>
 
+        <div *ngIf="forma.valid">
+            <button type="submit" class="btn btn-outline-primary">
 
-        <button type="submit" class="btn btn-outline-primary">
-        Guardar
-      </button>
+                Guardar
+              </button>
+        </div>
+
+        <div *ngIf="!forma.valid">
+            <button type="submit" class="btn btn-outline-primary" disabled>
+
+                Guardar
+              </button>
+        </div>
         <!-- </div>-->
     </form>
 
@@ -96,7 +113,7 @@
 
 
 <!--
-<pre>
+<pre *ngIf="forma">
     Estado del Formulario: {{ forma.valid }}
         <hr>
     Estado fue tocado:  {{ forma.touched }}
@@ -104,7 +121,7 @@
     Estado del status: {{ forma.status }}
     </pre>
 
-<pre>
+<pre *ngIf="forma">
     {{ forma.value | json }}
     </pre>
 

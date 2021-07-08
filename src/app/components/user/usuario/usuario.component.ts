@@ -40,7 +40,7 @@ transcripciones:Transcripcion[];
   }
 
   ngOnInit(): void {
-    console.log(`Usuario recibido en Usuario.Component ${this.Usuario.usuario._id}`);
+    //console.log(`Usuario recibido en Usuario.Component ${this.Usuario.usuario._id}`);
     //console.log(`Usuario recibido en Usuario.Component ${JSON.stringify(this.Usuario.usuario)}`);
     //console.log(`Usuario recibido en Usuario.Component ${this.Usuario.usuario[0]._id}`);
 

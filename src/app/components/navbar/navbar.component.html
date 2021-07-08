@@ -27,17 +27,14 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" routerLink='/user'>Mi Perfil</a></li>
                             <li><a class="dropdown-item" routerLink='/user/editarUsuario'>Editar perfil</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+
                         </ul>
                     </li>
                 </ul>
             </div>
             <ng-container *ngIf="auth0.isAuthenticated$ | async; else loggedOut">
 
-                <button class="btn btn-primary boton" (click)="auth0.logout({ returnTo: 'environment.returnTo' })">
+                <button class="btn btn-primary boton" (click)="auth0.logout({ returnTo: url })">
                 Salir
               </button>
             </ng-container>

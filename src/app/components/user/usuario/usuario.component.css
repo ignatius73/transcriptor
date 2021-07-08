@@ -4,10 +4,11 @@ div.form-group row {
 
 .foto {
     border-radius: 50%;
-    height: 50vh;
-    width: 50vh;
+    height: 30vh;
+    width: 30vh;
+    max-width: fit-content;
     text-align: center;
-    object-fit: cover;
+    /* object-fit: cover;*/
 }
 
 .row {

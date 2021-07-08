@@ -1,4 +1,6 @@
 export interface Transcripcion{
     idUsuario?: string,
-    texto?: string
+    texto?: string,
+    fecha?:string
+    
 }
