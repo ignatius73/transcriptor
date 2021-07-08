@@ -3,12 +3,13 @@ div.form-group row {
 }
 
 .foto {
+    padding-top: 5vh;
+    padding-left: 2vw;
     border-radius: 50%;
-    height: 30vh;
-    width: 30vh;
-    max-width: fit-content;
+    height: 40vh;
+    width: 40vh;
     text-align: center;
-    /* object-fit: cover;*/
+    object-fit: fill;
 }
 
 .row {
